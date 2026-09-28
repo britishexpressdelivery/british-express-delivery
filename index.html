@@ -1,16 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Package Tracking</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .header {
+            background: #2563eb;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #eef6ff;
+            border-radius: 10px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .status {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+            font-size: 13px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Package Tracking</h1>
 
-    <p>Track your package easily.</p>
+    <div class="header">
+        <h1>📦 Package Tracking</h1>
+        <p>Track your package quickly and easily.</p>
+    </div>
 
-    <input type="text" placeholder="Enter tracking number">
+    <div class="container">
 
-    <button>Track Package</button>
+        <div class="card">
+
+            <h2>Track Your Package</h2>
+
+            <input
+                type="text"
+                id="trackingNumber"
+                placeholder="Enter tracking number"
+            >
+
+            <button onclick="trackPackage()">
+                Track Package
+            </button>
+
+            <div id="result"></div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Package Tracking
+    </div>
+
+
+    <script>
+        function trackPackage() {
+
+            const number =
+                document.getElementById("trackingNumber").value.trim();
+
+            const result =
+                document.getElementById("result");
+
+            if (number === "") {
+
+                result.style.display = "block";
+
+                result.innerHTML =
+                    "⚠️ Please enter a tracking number.";
+
+                return;
+            }
+
+            result.style.display = "block";
+
+            result.innerHTML = `
+                <strong>Tracking Number:</strong><br>
+                ${number}
+                <br><br>
+
+                <strong>Status:</strong>
+                <span class="status">In Transit</span>
+
+                <br><br>
+
+                📍 <strong>Current Location:</strong><br>
+                Processing Center
+
+                <br><br>
+
+                🚚 Your package is currently on its way.
+            `;
+        }
+    </script>
+
 </body>
 </html>
