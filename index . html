@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
-<<link rel="stylesheet" href="style.css">>
-    <title>My First Website</title>
+<head>
+    <title>Package Tracking</title>
 </head>
 
 <body>
+    <h1>Package Tracking</h1>
 
-    <h1>hello you are welcome</h1>
+    <p>Track your package easily.</p>
 
-    <p>My name is Anurak.</p>
-    <p>I am learning how to build websites.</p>
+    <input type="text" placeholder="Enter tracking number">
 
-    <button>Click Me</button>
-
+    <button>Track Package</button>
 </body>
 </html>
