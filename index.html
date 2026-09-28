@@ -1,181 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Package Tracking</title>
+<title>Package Tracking</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
-        }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #222;
+}
 
-        .header {
-            background: #2563eb;
-            color: white;
-            padding: 25px 20px;
-            text-align: center;
-        }
+.header {
+  background: #2563eb;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
 
-        .header h1 {
-            margin: 0;
-            font-size: 30px;
-        }
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+}
 
-        .header p {
-            margin: 8px 0 0;
-            font-size: 15px;
-        }
+.header p {
+  margin: 12px 0 0;
+  font-size: 18px;
+}
 
-        .container {
-            max-width: 500px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
 
-        .card h2 {
-            margin-top: 0;
-            text-align: center;
-        }
+.card h2 {
+  text-align: center;
+  margin-top: 0;
+}
 
-        input {
-            width: 100%;
-            padding: 14px;
-            margin-top: 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-        }
+input {
+  width: 100%;
+  padding: 16px;
+  font-size: 17px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 15px 0;
+}
 
-        button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 12px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+button {
+  width: 100%;
+  padding: 16px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+button:hover {
+  background: #1d4ed8;
+}
 
-        #result {
-            display: none;
-            margin-top: 25px;
-            padding: 20px;
-            background: #eef6ff;
-            border-radius: 10px;
-            border-left: 5px solid #2563eb;
-        }
+.result {
+  display: none;
+  margin-top: 30px;
+  padding: 25px;
+  background: #eff6ff;
+  border-left: 5px solid #2563eb;
+  border-radius: 12px;
+}
 
-        .status {
-            color: #2563eb;
-            font-weight: bold;
-        }
+.info {
+  margin-bottom: 25px;
+}
 
-        .footer {
-            text-align: center;
-            padding: 25px;
-            color: #777;
-            font-size: 13px;
-        }
-    </style>
+.info strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.status {
+  color: #2563eb;
+  font-weight: bold;
+}
+
+.timeline {
+  margin-top: 25px;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 25px 35px;
+  border-left: 3px solid #d1d5db;
+}
+
+.timeline-item:last-child {
+  border-left: none;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  background: #d1d5db;
+  border-radius: 50%;
+}
+
+.timeline-item.done::before {
+  background: #22c55e;
+}
+
+.timeline-item.current::before {
+  background: #2563eb;
+  box-shadow: 0 0 0 5px #bfdbfe;
+}
+
+.timeline-item h3 {
+  margin: 0 0 5px;
+  font-size: 17px;
+}
+
+.timeline-item p {
+  margin: 0;
+  color: #666;
+}
+
+.footer {
+  text-align: center;
+  color: #777;
+  padding: 30px;
+}
+
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-    <div class="header">
-        <h1>📦 Package Tracking</h1>
-        <p>Track your package quickly and easily.</p>
-    </div>
+<div class="header">
+  <h1>📦 Package Tracking</h1>
+  <p>Track your package quickly and easily.</p>
+</div>
 
-    <div class="container">
+<div class="container">
 
-        <div class="card">
+  <div class="card">
 
-            <h2>Track Your Package</h2>
+    <h2>Track Your Package</h2>
 
-            <input
-                type="text"
-                id="trackingNumber"
-                placeholder="Enter tracking number"
-            >
+    <input
+      type="text"
+      id="trackingNumber"
+      placeholder="Enter tracking number"
+    >
 
-            <button onclick="trackPackage()">
-                Track Package
-            </button>
+    <button onclick="trackPackage()">
+      Track Package
+    </button>
 
-            <div id="result"></div>
+    <div class="result" id="result">
 
+      <div class="info">
+        <strong>Tracking Number</strong>
+        <span id="number"></span>
+      </div>
+
+      <div class="info">
+        <strong>Status</strong>
+        <span class="status" id="status"></span>
+      </div>
+
+      <div class="info">
+        <strong>📍 Current Location</strong>
+        <span id="location"></span>
+      </div>
+
+      <div class="timeline">
+
+        <h3>Tracking History</h3>
+
+        <div class="timeline-item done">
+          <h3>✓ Package Received</h3>
+          <p>Package has been received by the carrier.</p>
         </div>
 
+        <div class="timeline-item done">
+          <h3>✓ Departed Origin Facility</h3>
+          <p>Package has left the origin facility.</p>
+        </div>
+
+        <div class="timeline-item current">
+          <h3>🚚 In Transit</h3>
+          <p>Package is currently moving to the destination.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Arrived at Destination Facility</h3>
+          <p>Waiting for package to arrive.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Out for Delivery</h3>
+          <p>Package will be delivered soon.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Delivered</h3>
+          <p>Package has been delivered.</p>
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="footer">
-        © 2026 Package Tracking
-    </div>
+  </div>
 
+</div>
 
-    <script>
-        function trackPackage() {
+<div class="footer">
+  © 2026 Package Tracking
+</div>
 
-            const number =
-                document.getElementById("trackingNumber").value.trim();
+<script>
 
-            const result =
-                document.getElementById("result");
+function trackPackage() {
 
-            if (number === "") {
+  const number =
+    document.getElementById("trackingNumber").value.trim();
 
-                result.style.display = "block";
+  const result =
+    document.getElementById("result");
 
-                result.innerHTML =
-                    "⚠️ Please enter a tracking number.";
+  if (number === "") {
+    alert("Please enter a tracking number.");
+    return;
+  }
 
-                return;
-            }
+  document.getElementById("number").textContent = number;
 
-            result.style.display = "block";
+  document.getElementById("status").textContent =
+    "In Transit";
 
-            result.innerHTML = `
-                <strong>Tracking Number:</strong><br>
-                ${number}
-                <br><br>
+  document.getElementById("location").textContent =
+    "Processing Center";
 
-                <strong>Status:</strong>
-                <span class="status">In Transit</span>
+  result.style.display = "block";
 
-                <br><br>
+  result.scrollIntoView({
+    behavior: "smooth"
+  });
+}
 
-                📍 <strong>Current Location:</strong><br>
-                Processing Center
-
-                <br><br>
-
-                🚚 Your package is currently on its way.
-            `;
-        }
-    </script>
+</script>
 
 </body>
 </html>
