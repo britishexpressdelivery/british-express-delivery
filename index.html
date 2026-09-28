@@ -259,17 +259,17 @@ button:hover {
 
     <div class="detail-row">
         <strong>🏁 Destination</strong>
-        <span>Customer Address</span>
+        <span id="detailDestination">Customer Address</span>
     </div>
 
     <div class="detail-row">
         <strong>📅 Shipment Date</strong>
-        <span>September 28, 2026</span>
+        <span id="detailDate">September 28, 2026</span>
     </div>
 
     <div class="detail-row">
         <strong>🚚 Estimated Delivery</strong>
-        <span>September 30, 2026</span>
+        <span id="detailDelivery">September 30, 2026</span>
     </div>
 </div>
 <div class="footer">
@@ -280,24 +280,36 @@ button:hover {
 
 const packages = {
     "PKG12345": {
-        status: "In Transit",
-        location: "Processing Center"
-    },
+    status: "In Transit",
+    location: "Processing Center",
+    destination: "Customer Address",
+    shipmentDate: "September 28, 2026",
+    deliveryDate: "September 30, 2026"
+},
 
     "PKG67890": {
-        status: "Out for Delivery",
-        location: "Local Delivery Hub"
-    },
+    status: "Out for Delivery",
+    location: "Local Delivery Hub",
+    destination: "Customer Address",
+    shipmentDate: "September 28, 2026",
+    deliveryDate: "September 30, 2026"
+},
 
     "PKG55555": {
-        status: "Delivered",
-        location: "Customer Address"
-    },
+    status: "Delivered",
+    location: "Customer Address",
+    destination: "Customer Address",
+    shipmentDate: "September 25, 2026",
+    deliveryDate: "September 28, 2026"
+},
 
     "PKG99999": {
-        status: "Arrived at Destination Facility",
-        location: "Destination Facility"
-    }
+    status: "Arrived at Destination Facility",
+    location: "Destination Facility",
+    destination: "Customer Address",
+    shipmentDate: "September 26, 2026",
+    deliveryDate: "September 29, 2026"
+}
 };
 
 function trackPackage() {
