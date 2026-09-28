@@ -339,9 +339,11 @@ function trackPackage() {
         return;
     }
 
-    document.getElementById("number").textContent = number;
-    document.getElementById("status").textContent = packageInfo.status;
-    document.getElementById("location").textContent = packageInfo.location;
+    document.getElementById("detailNumber").textContent = number;
+document.getElementById("detailLocation").textContent = packageInfo.location;
+document.getElementById("detailDestination").textContent = packageInfo.destination;
+document.getElementById("detailDate").textContent = packageInfo.shipmentDate;
+document.getElementById("detailDelivery").textContent = packageInfo.deliveryDate;
 
     const timelineItems = document.querySelectorAll(".timeline-item");
 
