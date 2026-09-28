@@ -274,6 +274,7 @@ const packages = {
 };
 
 function trackPackage() {
+
     const number = document
         .getElementById("trackingNumber")
         .value
@@ -287,9 +288,10 @@ function trackPackage() {
         return;
     }
 
-    if (!packages[number]) {
+    const packageInfo = packages[number];
+
+    if (!packageInfo) {
         result.innerHTML = `
-            <h2>Tracking Number Not Found</h2>
             <p>We could not find <strong>${number}</strong>.</p>
             <p>Please check the tracking number and try again.</p>
         `;
@@ -298,11 +300,62 @@ function trackPackage() {
         return;
     }
 
-    const packageInfo = packages[number];
-
     document.getElementById("number").textContent = number;
     document.getElementById("status").textContent = packageInfo.status;
     document.getElementById("location").textContent = packageInfo.location;
+
+    const timelineItems = document.querySelectorAll(".timeline-item");
+
+    const stages = [
+        "Package Received",
+        "Departed Origin Facility",
+        "In Transit",
+        "Arrived at Destination Facility",
+        "Out for Delivery",
+        "Delivered"
+    ];
+
+    const descriptions = [
+        "Package has been received by the carrier.",
+        "Package has left the origin facility.",
+        "Package is currently moving to the destination.",
+        "Package has arrived at the destination facility.",
+        "Package will be delivered soon.",
+        "Package has been delivered."
+    ];
+
+    const currentStage = stages.indexOf(packageInfo.status);
+
+    timelineItems.forEach((item, index) => {
+
+        item.classList.remove("completed");
+        item.classList.remove("current");
+        item.classList.remove("pending");
+
+        item.classList.add(
+            index < currentStage
+                ? "completed"
+                : index === currentStage
+                ? "current"
+                : "pending"
+        );
+
+        const title = item.querySelector("h3");
+        const description = item.querySelector("p");
+
+        if (title) {
+            title.textContent =
+                index < currentStage
+                    ? "✓ " + stages[index]
+                    : index === currentStage
+                    ? "🚚 " + stages[index]
+                    : stages[index];
+        }
+
+        if (description) {
+            description.textContent = descriptions[index];
+        }
+    });
 
     result.style.display = "block";
 
@@ -310,6 +363,45 @@ function trackPackage() {
         behavior: "smooth"
     });
 }
+
+/* Dynamic timeline colors */
+
+const timelineStyle = document.createElement("style");
+
+timelineStyle.textContent = `
+    .timeline-item.completed h3 {
+        color: #20b968;
+    }
+
+    .timeline-item.current h3 {
+        color: #2563eb;
+    }
+
+    .timeline-item.pending h3 {
+        color: #333;
+    }
+
+    .timeline-item.completed p,
+    .timeline-item.current p,
+    .timeline-item.pending p {
+        color: #666;
+    }
+
+    .timeline-item.completed::before {
+        background: #20b968 !important;
+    }
+
+    .timeline-item.current::before {
+        background: #2563eb !important;
+        box-shadow: 0 0 0 8px #dbeafe;
+    }
+
+    .timeline-item.pending::before {
+        background: #cbd5e1 !important;
+    }
+`;
+
+document.head.appendChild(timelineStyle);
 
 </script>
 
