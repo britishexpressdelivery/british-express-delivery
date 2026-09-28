@@ -149,7 +149,7 @@ button:hover {
   text-align: center;
   color: #777;
   padding: 30px;
-}
+} 
 
 @media (max-width: 600px) {
   .header h1 {
@@ -251,32 +251,64 @@ button:hover {
 
 <script>
 
+const packages = {
+    "PKG12345": {
+        status: "In Transit",
+        location: "Processing Center"
+    },
+
+    "PKG67890": {
+        status: "Out for Delivery",
+        location: "Local Delivery Hub"
+    },
+
+    "PKG55555": {
+        status: "Delivered",
+        location: "Customer Address"
+    },
+
+    "PKG99999": {
+        status: "Arrived at Destination Facility",
+        location: "Destination Facility"
+    }
+};
+
 function trackPackage() {
+    const number = document
+        .getElementById("trackingNumber")
+        .value
+        .trim()
+        .toUpperCase();
 
-  const number =
-    document.getElementById("trackingNumber").value.trim();
+    const result = document.getElementById("result");
 
-  const result =
-    document.getElementById("result");
+    if (number === "") {
+        alert("Please enter a tracking number.");
+        return;
+    }
 
-  if (number === "") {
-    alert("Please enter a tracking number.");
-    return;
-  }
+    if (!packages[number]) {
+        result.innerHTML = `
+            <h2>Tracking Number Not Found</h2>
+            <p>We could not find <strong>${number}</strong>.</p>
+            <p>Please check the tracking number and try again.</p>
+        `;
 
-  document.getElementById("number").textContent = number;
+        result.style.display = "block";
+        return;
+    }
 
-  document.getElementById("status").textContent =
-    "In Transit";
+    const packageInfo = packages[number];
 
-  document.getElementById("location").textContent =
-    "Processing Center";
+    document.getElementById("number").textContent = number;
+    document.getElementById("status").textContent = packageInfo.status;
+    document.getElementById("location").textContent = packageInfo.location;
 
-  result.style.display = "block";
+    result.style.display = "block";
 
-  result.scrollIntoView({
-    behavior: "smooth"
-  });
+    result.scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 </script>
