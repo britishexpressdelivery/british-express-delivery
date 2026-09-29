@@ -374,10 +374,30 @@ function trackPackage() {
         "El paquete ha sido entregado."
     ];
 
-    const currentStage =
-        spanishStages.indexOf(packageInfo.status);
+    const currentStage = spanishStages.indexOf(packageInfo.status);
 
-    timelineItems.forEach((item, index) => {
+timelineItems.forEach((item, index) => {
+    item.classList.remove("completed", "current", "pending");
+
+    if (index < currentStage) {
+        item.classList.add("completed");
+    } else if (index === currentStage) {
+        item.classList.add("current");
+    } else {
+        item.classList.add("pending");
+    }
+
+    const title = item.querySelector("h3");
+    const description = item.querySelector("p");
+
+    if (title) {
+        title.textContent = spanishStages[index];
+    }
+
+    if (description) {
+        description.textContent = descriptions[index];
+    }
+});
 
         item.classList.remove("completed");
         item.classList.remove("current");
