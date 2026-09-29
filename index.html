@@ -343,46 +343,39 @@ function trackPackage() {
             <p>We could not find <strong>${number}</strong>.</p>
             <p>Please check the tracking number and try again.</p>
         `;
-
         result.style.display = "block";
         return;
     }
 
     document.getElementById("detailNumber").textContent = number;
-document.getElementById("detailLocation").textContent = packageInfo.location;
-document.getElementById("detailDestination").textContent = packageInfo.destination;
-document.getElementById("detailDate").textContent = packageInfo.shipmentDate;
-document.getElementById("detailDelivery").textContent = packageInfo.deliveryDate;
+    document.getElementById("detailLocation").textContent = packageInfo.location;
+    document.getElementById("detailDestination").textContent = packageInfo.destination;
+    document.getElementById("detailDate").textContent = packageInfo.shipmentDate;
+    document.getElementById("detailDelivery").textContent = packageInfo.deliveryDate;
 
-    const timelineItems = document.querySelectorAll(".timeline-item");
+    const timelineItems =
+        document.querySelectorAll(".timeline-item");
 
-    const stages = [
-        "Package Received",
-        "Departed Origin Facility",
-        "In Transit",
-        "Arrived at Destination Facility",
-        "Out for Delivery",
-        "Delivered"
+    const spanishStages = [
+        "Paquete recibido",
+        "Salió de la instalación de origen",
+        "En Tránsito",
+        "Llegó a la instalación de destino",
+        "En Reparto",
+        "Entregado"
     ];
-const spanishStages = [
-    "Paquete recibido",
-    "Salió de la instalación de origen",
-    "En Tránsito",
-    "Llegó a la instalación de destino",
-    "En Reparto",
-    "Entregado"
-];
+
     const descriptions = [
-    "El paquete ha sido recibido por el transportista.",
-    "El paquete ha salido de la instalación de origen.",
-    "El paquete está actualmente en camino hacia su destino.",
-    "El paquete ha llegado a la instalación de destino.",
-    "El paquete será entregado pronto.",
-    "El paquete ha sido entregado."
-];
+        "El paquete ha sido recibido por el transportista.",
+        "El paquete ha salido de la instalación de origen.",
+        "El paquete está actualmente en camino hacia su destino.",
+        "El paquete ha llegado a la instalación de destino.",
+        "El paquete será entregado pronto.",
+        "El paquete ha sido entregado."
+    ];
 
     const currentStage =
-    spanishStages.indexOf(packageInfo.status);
+        spanishStages.indexOf(packageInfo.status);
 
     timelineItems.forEach((item, index) => {
 
@@ -405,9 +398,9 @@ const spanishStages = [
             title.textContent =
                 index < currentStage
                     ? "✓ " + spanishStages[index]
-: index === currentStage
-? "🚚 " + spanishStages[index]
-: spanishStages[index];
+                    : index === currentStage
+                    ? "🚚 " + spanishStages[index]
+                    : spanishStages[index];
         }
 
         if (description) {
@@ -421,9 +414,6 @@ const spanishStages = [
         behavior: "smooth"
     });
 }
-
-/* Dynamic timeline colors */
-
 const timelineStyle = document.createElement("style");
 
 timelineStyle.textContent = `
