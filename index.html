@@ -165,77 +165,80 @@ button:hover {
 
 <body>
 
-<div class="header">
-  <h1>📦 Package Tracking</h1>
-  <p>Track your package quickly and easily.</p>
+<h1>📦 Seguimiento de Paquetes</h1>
+
+<p>
+Rastrea tu paquete de forma rápida y sencilla.
+</p>
 </div>
 
 <div class="container">
 
   <div class="card">
 
-    <h2>Track Your Package</h2>
+    <h2>Rastrea tu paquete</h2>
 
     <input
       type="text"
       id="trackingNumber"
-      placeholder="Enter tracking number"
+      placeholder="Introduce el número de seguimiento"
     >
 
     <button onclick="trackPackage()">
-      Track Package
+      Rastrear paquete
     </button>
 
     <div class="result" id="result">
 
       <div class="info">
-        <strong>Tracking Number</strong>
+        <strong>Número de Seguimiento</strong>
         <span id="number"></span>
       </div>
 
       <div class="info">
-        <strong>Status</strong>
+        <strong>Estado</strong>
         <span class="status" id="status"></span>
       </div>
 
       <div class="info">
-        <strong>📍 Current Location</strong>
+        <strong>📍 Ubicación Actual</strong>
         <span id="location"></span>
       </div>
 
       <div class="timeline">
 
-        <h3>Tracking History</h3>
+        <h3>Historial de Seguimiento</h3>
 
         <div class="timeline-item done">
-          <h3>✓ Package Received</h3>
-          <p>Package has been received by the carrier.</p>
+          <h3>✓ Paquete Recibido</h3>
+          <p>El paquete ha sido recibido por el transportista.</p>
         </div>
 
         <div class="timeline-item done">
-          <h3>✓ Departed Origin Facility</h3>
-          <p>Package has left the origin facility.</p>
-        </div>
+    <h3>✓ Salió de la Instalación de Origen</h3>
+    <p>El paquete ha salido de la instalación de origen.</p>
+</div>
 
-        <div class="timeline-item current">
-          <h3>🚚 In Transit</h3>
-          <p>Package is currently moving to the destination.</p>
-        </div>
+<div class="timeline-item current">
+    <h3>🚚 En Tránsito</h3>
+    <p>El paquete se encuentra actualmente en tránsito hacia su destino.</p>
+</div>
 
-        <div class="timeline-item">
-          <h3>Arrived at Destination Facility</h3>
-          <p>Waiting for package to arrive.</p>
-        </div>
+<div class="timeline-item">
+    <h3>Llegó a la Instalación de Destino</h3>
+    <p>Esperando que el paquete llegue.</p>
+</div>
 
-        <div class="timeline-item">
-          <h3>Out for Delivery</h3>
-          <p>Package will be delivered soon.</p>
-        </div>
+<div class="timeline-item">
+    <h3>En Reparto</h3>
+    <p>El paquete será entregado pronto.</p>
+</div>
 
-        <div class="timeline-item">
-          <h3>Delivered</h3>
-          <p>Package has been delivered.</p>
-        </div>
+<div class="timeline-item">
+    <h3>Entregado</h3>
+    <p>El paquete ha sido entregado.</p>
+</div>
+          
 
       </div>
 
@@ -245,30 +248,33 @@ button:hover {
 
 </div>
 <div class="shipment-details">
-    <h2>Shipment Details</h2>
+    <h2>Detalles del Envío</h2>
 
     <div class="detail-row">
-        <strong>📦 Tracking Number</strong>
+        <strong>📦 Número de Seguimiento</strong>
         <span id="detailNumber">PKG36295</span>
     </div>
 
     <div class="detail-row">
-        <strong>📍 Current Location</strong>
-        <span id="detailLocation">Agbor Processing Center</span>
+        <strong>📍 Ubicación Actual</strong>
+        <span id="detailLocation">London Processing Center</span>
     </div>
 
     <div class="detail-row">
-        <strong>🏁 Destination</strong>
-        <span id="detailDestination">owa oyibu</span>
+        <strong>🏁 Destino</strong>
+        <span id="detailDestination">Katia Elibet Montalvo Laureano 
+Calle San Jose número 28 segunda planta
+Ibiza Islas Baleares España
+Santa Eulalia del Rio</span>
     </div>
 
     <div class="detail-row">
-        <strong>📅 Shipment Date</strong>
+        <strong>📅 Fecha de Envío</strong>
         <span id="detailDate">September 29, 2026</span>
     </div>
 
     <div class="detail-row">
-        <strong>🚚 Estimated Delivery</strong>
+        <strong>🚚 Entrega Estimada</strong>
         <span id="detailDelivery">October 1, 2026</span>
     </div>
 </div>
@@ -280,35 +286,38 @@ button:hover {
 
 const packages = {
     "PKG36295": {
-    status: "In Transit",
-    location: "Agbor Processing Center",
-    destination: "owa oyibu",
+    status: "En Tránsito",
+    location: "London Processing Center",
+    destination: "Katia Elibet Montalvo Laureano 
+Calle San Jose número 28 segunda planta
+Ibiza Islas Baleares España
+Santa Eulalia del Rio",
     shipmentDate: "September 29, 2026",
     deliveryDate: "October1, 2026"
 },
 
     "PKG67890": {
-    status: "Out for Delivery",
+    status: " En Reparto",
     location: "Local Delivery Hub",
     destination: "Customer Address",
-    shipmentDate: "September 28, 2026",
-    deliveryDate: "September 30, 2026"
+    shipmentDate: "September 29, 2026",
+    deliveryDate: "October 1, 2026"
 },
 
     "PKG55555": {
-    status: "Delivered",
+    status: "Entregado",
     location: "Customer Address",
     destination: "Customer Address",
-    shipmentDate: "September 25, 2026",
-    deliveryDate: "September 28, 2026"
+    shipmentDate: "September 29, 2026",
+    deliveryDate: "October 1, 2026"
 },
 
     "PKG99999": {
-    status: "Arrived at Destination Facility",
+    status: "Llegó a la Instalación de Destino",
     location: "Destination Facility",
     destination: "Customer Address",
-    shipmentDate: "September 26, 2026",
-    deliveryDate: "September 29, 2026"
+    shipmentDate: "September 29, 2026",
+    deliveryDate: "October 1, 2026"
 }
 };
 
