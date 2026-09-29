@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Package Tracking</title>
+<title>Seguimiento de Paquetes</title>
 
 <style>
 * {
@@ -30,45 +30,46 @@ body {
   font-size: 32px;
 }
 
-.header p {
-  margin: 12px 0 0;
-  font-size: 18px;
-}
-
 .container {
   max-width: 700px;
-  margin: 40px auto;
+  margin: 35px auto;
   padding: 0 20px;
 }
 
-.card {
-  background: white;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+.intro {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 18px;
 }
 
-.card h2 {
+.tracking-box {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.tracking-box h2 {
   text-align: center;
   margin-top: 0;
 }
 
 input {
   width: 100%;
-  padding: 16px;
-  font-size: 17px;
+  padding: 18px;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  margin: 15px 0;
+  border-radius: 12px;
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 
 button {
   width: 100%;
-  padding: 16px;
+  padding: 18px;
   background: #2563eb;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
@@ -78,22 +79,25 @@ button:hover {
   background: #1d4ed8;
 }
 
-.result {
-  display: none;
+.details {
+  background: white;
   margin-top: 30px;
   padding: 25px;
-  background: #eff6ff;
-  border-left: 5px solid #2563eb;
-  border-radius: 12px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.06);
 }
 
-.info {
-  margin-bottom: 25px;
+.details h2 {
+  margin-top: 0;
 }
 
-.info strong {
-  display: block;
-  margin-bottom: 5px;
+.detail {
+  margin: 12px 0;
+  font-size: 16px;
+}
+
+.detail strong {
+  color: #222;
 }
 
 .status {
@@ -102,7 +106,7 @@ button:hover {
 }
 
 .timeline {
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 .timeline-item {
@@ -126,13 +130,13 @@ button:hover {
   border-radius: 50%;
 }
 
-.timeline-item.done::before {
+.timeline-item.completed::before {
   background: #22c55e;
 }
 
 .timeline-item.current::before {
   background: #2563eb;
-  box-shadow: 0 0 0 5px #bfdbfe;
+  box-shadow: 0 0 0 5px #dbeafe;
 }
 
 .timeline-item h3 {
@@ -145,19 +149,39 @@ button:hover {
   color: #666;
 }
 
+.timeline-item.completed h3 {
+  color: #16a34a;
+}
+
+.timeline-item.current h3 {
+  color: #2563eb;
+}
+
+.timeline-item.pending h3 {
+  color: #777;
+}
+
+.error {
+  color: #dc2626;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
 .footer {
   text-align: center;
   color: #777;
   padding: 30px;
-} 
+}
 
 @media (max-width: 600px) {
   .header h1 {
     font-size: 28px;
   }
 
-  .card {
-    padding: 22px;
+  .tracking-box,
+  .details {
+    padding: 20px;
   }
 }
 </style>
@@ -165,16 +189,17 @@ button:hover {
 
 <body>
 
-<h1>📦 Seguimiento de Paquetes</h1>
-
-<p>
-Rastrea tu paquete de forma rápida y sencilla.
-</p>
+<div class="header">
+  <h1>📦 Seguimiento de Paquetes</h1>
 </div>
 
 <div class="container">
 
-  <div class="card">
+  <div class="intro">
+    Rastrea tu paquete de forma rápida y sencilla.
+  </div>
+
+  <div class="tracking-box">
 
     <h2>Rastrea tu paquete</h2>
 
@@ -188,288 +213,166 @@ Rastrea tu paquete de forma rápida y sencilla.
       Rastrear paquete
     </button>
 
-    <div class="result" id="result">
-
-      <div class="info">
-        <strong>Número de Seguimiento</strong>
-        <span id="number"></span>
-      </div>
-
-      <div class="info">
-        <strong>Estado</strong>
-        <span class="status" id="status"></span>
-      </div>
-
-      <div class="info">
-        <strong>📍 Ubicación Actual</strong>
-        <span id="location"></span>
-      </div>
-
-      <div class="timeline">
-
-        <h3>Historial de Seguimiento</h3>
-
-        <div class="timeline-item done">
-          <h3>✓ Paquete Recibido</h3>
-          <p>El paquete ha sido recibido por el transportista.</p>
-        </div>
-
-        <div class="timeline-item done">
-    <h3>✓ Salió de la Instalación de Origen</h3>
-    <p>El paquete ha salido de la instalación de origen.</p>
-</div>
-
-<div class="timeline-item current">
-    <h3>🚚 En Tránsito</h3>
-    <p>El paquete se encuentra actualmente en tránsito hacia su destino.</p>
-</div>
-
-<div class="timeline-item">
-    <h3>Llegó a la Instalación de Destino</h3>
-    <p>Esperando que el paquete llegue.</p>
-</div>
-
-<div class="timeline-item">
-    <h3>En Reparto</h3>
-    <p>El paquete será entregado pronto.</p>
-</div>
-
-<div class="timeline-item">
-    <h3>Entregado</h3>
-    <p>El paquete ha sido entregado.</p>
-</div>
-          
-
-      </div>
-
-    </div>
-
   </div>
 
+  <div id="result"></div>
+
 </div>
-<div class="shipment-details">
-    <h2>Detalles del Envío</h2>
 
-    <div class="detail-row">
-        <strong>📦 Número de Seguimiento</strong>
-        <span id="detailNumber">PKG36295</span>
-    </div>
-
-    <div class="detail-row">
-        <strong>📍 Ubicación Actual</strong>
-        <span id="detailLocation">London Processing Center</span>
-    </div>
-
-    <div class="detail-row">
-        <strong>🏁 Destino</strong>
-        <span id="detailDestination">Katia Elibet Montalvo Laureano 
-Calle San Jose número 28 segunda planta
-Ibiza Islas Baleares España
-Santa Eulalia del Rio</span>
-    </div>
-
-    <div class="detail-row">
-        <strong>📅 Fecha de Envío</strong>
-        <span id="detailDate">September 29, 2026</span>
-    </div>
-
-    <div class="detail-row">
-        <strong>🚚 Entrega Estimada</strong>
-        <span id="detailDelivery">October 1, 2026</span>
-    </div>
-</div>
 <div class="footer">
-  © 2026 Package Tracking
+  © 2026 Seguimiento de Paquetes
 </div>
 
 <script>
 
 const packages = {
-    "PKG36295": {
+
+  "PKG36295": {
     status: "En Tránsito",
     location: "London Processing Center",
-    destination: "Katia Elibet Montalvo Laureano 
-Calle San Jose número 28 segunda planta
-Ibiza Islas Baleares España
-Santa Eulalia del Rio",
-    shipmentDate: "September 29, 2026",
-    deliveryDate: "October1, 2026"
-},
+    destination: "Katia Elibet Montalvo Laureano, Calle San Jose número 28 segunda planta, Ibiza, Islas Baleares, España, Santa Eulalia del Río",
+    shipmentDate: "29 de septiembre de 2026",
+    deliveryDate: "1 de octubre de 2026"
+  },
 
-    "PKG67890": {
+  "PKG67890": {
     status: "En Reparto",
-    location: "Local Delivery Hub",
-    destination: "Customer Address",
-    shipmentDate: "September 29, 2026",
-    deliveryDate: "October 1, 2026"
-},
+    location: "Centro de Distribución Local",
+    destination: "Dirección del cliente",
+    shipmentDate: "29 de septiembre de 2026",
+    deliveryDate: "1 de octubre de 2026"
+  },
 
-    "PKG55555": {
+  "PKG55555": {
     status: "Entregado",
-    location: "Customer Address",
-    destination: "Customer Address",
-    shipmentDate: "September 29, 2026",
-    deliveryDate: "October 1, 2026"
-},
+    location: "Dirección del cliente",
+    destination: "Dirección del cliente",
+    shipmentDate: "29 de septiembre de 2026",
+    deliveryDate: "1 de octubre de 2026"
+  }
 
-    "PKG99999": {
-    status: "Llegó a la Instalación de Destino",
-    location: "Destination Facility",
-    destination: "Customer Address",
-    shipmentDate: "September 29, 2026",
-    deliveryDate: "October 1, 2026"
-}
 };
+
 
 function trackPackage() {
 
-    const number = document
-        .getElementById("trackingNumber")
-        .value
-        .trim()
-        .toUpperCase();
+  const trackingNumber =
+    document.getElementById("trackingNumber")
+    .value
+    .trim()
+    .toUpperCase();
 
-    const result = document.getElementById("result");
+  const result = document.getElementById("result");
 
-    if (number === "") {
-        alert("Please enter a tracking number.");
-        return;
-    }
+  if (!trackingNumber) {
 
-    const packageInfo = packages[number];
+    result.innerHTML =
+      '<div class="error">Introduce un número de seguimiento.</div>';
 
-    if (!packageInfo) {
-        result.innerHTML = `
-            <p>We could not find <strong>${number}</strong>.</p>
-            <p>Please check the tracking number and try again.</p>
-        `;
-        result.style.display = "block";
-        return;
-    }
+    return;
+  }
 
-    document.getElementById("detailNumber").textContent = number;
-    document.getElementById("detailLocation").textContent = packageInfo.location;
-    document.getElementById("detailDestination").textContent = packageInfo.destination;
-    document.getElementById("detailDate").textContent = packageInfo.shipmentDate;
-    document.getElementById("detailDelivery").textContent = packageInfo.deliveryDate;
+  const packageInfo = packages[trackingNumber];
 
-    const timelineItems =
-        document.querySelectorAll(".timeline-item");
+  if (!packageInfo) {
 
-    const spanishStages = [
-        "Paquete recibido",
-        "Salió de la instalación de origen",
-        "En Tránsito",
-        "Llegó a la instalación de destino",
-        "En Reparto",
-        "Entregado"
-    ];
+    result.innerHTML =
+      '<div class="error">No se encontró ningún paquete con ese número.</div>';
 
-    const descriptions = [
-        "El paquete ha sido recibido por el transportista.",
-        "El paquete ha salido de la instalación de origen.",
-        "El paquete está actualmente en camino hacia su destino.",
-        "El paquete ha llegado a la instalación de destino.",
-        "El paquete será entregado pronto.",
-        "El paquete ha sido entregado."
-    ];
+    return;
+  }
 
-    const currentStage = spanishStages.indexOf(packageInfo.status);
+  const stages = [
+    "Paquete recibido",
+    "Salió de la instalación de origen",
+    "En Tránsito",
+    "Llegó a la instalación de destino",
+    "En Reparto",
+    "Entregado"
+  ];
 
-timelineItems.forEach((item, index) => {
-    item.classList.remove("completed", "current", "pending");
+  const descriptions = [
+    "El paquete ha sido recibido por el transportista.",
+    "El paquete ha salido de la instalación de origen.",
+    "El paquete se encuentra actualmente en tránsito hacia su destino.",
+    "El paquete ha llegado a la instalación de destino.",
+    "El paquete está siendo preparado para su entrega.",
+    "El paquete ha sido entregado."
+  ];
+
+  const currentStage = stages.indexOf(packageInfo.status);
+
+  let timelineHTML = "";
+
+  stages.forEach((stage, index) => {
+
+    let className = "timeline-item";
 
     if (index < currentStage) {
-        item.classList.add("completed");
+      className += " completed";
     } else if (index === currentStage) {
-        item.classList.add("current");
+      className += " current";
     } else {
-        item.classList.add("pending");
+      className += " pending";
     }
 
-    const title = item.querySelector("h3");
-    const description = item.querySelector("p");
+    timelineHTML += `
+      <div class="${className}">
+        <h3>${stage}</h3>
+        <p>${descriptions[index]}</p>
+      </div>
+    `;
+  });
 
-    if (title) {
-        title.textContent = spanishStages[index];
-    }
 
-    if (description) {
-        description.textContent = descriptions[index];
-    }
-});
+  result.innerHTML = `
 
-        item.classList.remove("completed");
-        item.classList.remove("current");
-        item.classList.remove("pending");
+    <div class="details">
 
-        item.classList.add(
-            index < currentStage
-                ? "completed"
-                : index === currentStage
-                ? "current"
-                : "pending"
-        );
+      <h2>Detalles del Envío</h2>
 
-        const title = item.querySelector("h3");
-        const description = item.querySelector("p");
+      <div class="detail">
+        📦 <strong>Número de Seguimiento:</strong>
+        ${trackingNumber}
+      </div>
 
-        if (title) {
-            title.textContent =
-                index < currentStage
-                    ? "✓ " + spanishStages[index]
-                    : index === currentStage
-                    ? "🚚 " + spanishStages[index]
-                    : spanishStages[index];
-        }
+      <div class="detail">
+        📍 <strong>Ubicación Actual:</strong>
+        ${packageInfo.location}
+      </div>
 
-        if (description) {
-            description.textContent = descriptions[index];
-        }
-    });
+      <div class="detail">
+        🚩 <strong>Estado:</strong>
+        <span class="status">${packageInfo.status}</span>
+      </div>
 
-    result.style.display = "block";
+      <div class="detail">
+        🏁 <strong>Destino:</strong>
+        ${packageInfo.destination}
+      </div>
 
-    result.scrollIntoView({
-        behavior: "smooth"
-    });
+      <div class="detail">
+        📅 <strong>Fecha de Envío:</strong>
+        ${packageInfo.shipmentDate}
+      </div>
+
+      <div class="detail">
+        🚚 <strong>Entrega Estimada:</strong>
+        ${packageInfo.deliveryDate}
+      </div>
+
+      <div class="timeline">
+
+        <h2>Historial del Envío</h2>
+
+        ${timelineHTML}
+
+      </div>
+
+    </div>
+
+  `;
 }
-const timelineStyle = document.createElement("style");
-
-timelineStyle.textContent = `
-    .timeline-item.completed h3 {
-        color: #20b968;
-    }
-
-    .timeline-item.current h3 {
-        color: #2563eb;
-    }
-
-    .timeline-item.pending h3 {
-        color: #333;
-    }
-
-    .timeline-item.completed p,
-    .timeline-item.current p,
-    .timeline-item.pending p {
-        color: #666;
-    }
-
-    .timeline-item.completed::before {
-        background: #20b968 !important;
-    }
-
-    .timeline-item.current::before {
-        background: #2563eb !important;
-        box-shadow: 0 0 0 8px #dbeafe;
-    }
-
-    .timeline-item.pending::before {
-        background: #cbd5e1 !important;
-    }
-`;
-
-document.head.appendChild(timelineStyle);
 
 </script>
 
