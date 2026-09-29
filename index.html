@@ -297,7 +297,7 @@ Santa Eulalia del Rio",
 },
 
     "PKG67890": {
-    status: " En Reparto",
+    status: "En Reparto",
     location: "Local Delivery Hub",
     destination: "Customer Address",
     shipmentDate: "September 29, 2026",
@@ -381,7 +381,8 @@ const spanishStages = [
     "El paquete ha sido entregado."
 ];
 
-    const currentStage = stages.indexOf(packageInfo.status);
+    const currentStage =
+    spanishStages.indexOf(packageInfo.status);
 
     timelineItems.forEach((item, index) => {
 
