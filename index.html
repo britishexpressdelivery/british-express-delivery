@@ -373,13 +373,13 @@ const spanishStages = [
     "Entregado"
 ];
     const descriptions = [
-        "Package has been received by the carrier.",
-        "Package has left the origin facility.",
-        "Package is currently moving to the destination.",
-        "Package has arrived at the destination facility.",
-        "Package will be delivered soon.",
-        "Package has been delivered."
-    ];
+    "El paquete ha sido recibido por el transportista.",
+    "El paquete ha salido de la instalación de origen.",
+    "El paquete está actualmente en camino hacia su destino.",
+    "El paquete ha llegado a la instalación de destino.",
+    "El paquete será entregado pronto.",
+    "El paquete ha sido entregado."
+];
 
     const currentStage = stages.indexOf(packageInfo.status);
 
@@ -403,10 +403,10 @@ const spanishStages = [
         if (title) {
             title.textContent =
                 index < currentStage
-                    ? "✓ " + stages[index]
-                    : index === currentStage
-                    ? "🚚 " + stages[index]
-                    : stages[index];
+                    ? "✓ " + spanishStages[index]
+: index === currentStage
+? "🚚 " + spanishStages[index]
+: spanishStages[index];
         }
 
         if (description) {
