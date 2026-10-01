@@ -4,372 +4,554 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shipment Tracking</title>
+<title>British Express Delivery Company</title>
 
 <style>
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #222;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
 }
 
-.header {
-  background: #2563eb;
-  color: white;
-  text-align: center;
-  padding: 30px 20px;
+header {
+    background: #0b5ed7;
+    color: white;
+    padding: 18px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 32px;
+.nav {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+    font-size: 14px;
+}
+
+.hero {
+    background: linear-gradient(135deg, #0b5ed7, #063b8f);
+    color: white;
+    padding: 75px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.6;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.primary {
+    background: white;
+    color: #0b5ed7;
+}
+
+.secondary {
+    border: 2px solid white;
+    color: white;
 }
 
 .container {
-  max-width: 700px;
-  margin: 35px auto;
-  padding: 0 20px;
+    max-width: 1100px;
+    margin: auto;
+    padding: 55px 20px;
 }
 
-.intro {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 18px;
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
 }
 
-.tracking-box {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+.section-title h2 {
+    font-size: 30px;
+    color: #123b70;
 }
 
-.tracking-box h2 {
-  text-align: center;
-  margin-top: 0;
+.section-title p {
+    margin-top: 10px;
+    color: #666;
 }
 
-input {
-  width: 100%;
-  padding: 18px;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  font-size: 18px;
-  margin-bottom: 15px;
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
-button {
-  width: 100%;
-  padding: 18px;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
+.card {
+    background: white;
+    padding: 28px 22px;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+    text-align: center;
 }
 
-button:hover {
-  background: #1d4ed8;
+.card .icon {
+    font-size: 38px;
+    margin-bottom: 15px;
 }
 
-.details {
-  background: white;
-  margin-top: 30px;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+.card h3 {
+    color: #0b5ed7;
+    margin-bottom: 10px;
 }
 
-.details h2 {
-  margin-top: 0;
+.card p {
+    color: #666;
+    line-height: 1.6;
 }
 
-.detail {
-    margin: 12px 0;
-    font-size: 16px;
-    color: #222;
-}
-.detail strong {
-  color: #222;
-}
-
-.status {
-  color: #2563eb;
-  font-weight: bold;
+.track-box {
+    background: white;
+    max-width: 700px;
+    margin: auto;
+    padding: 35px 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: center;
 }
 
-.timeline {
-  margin-top: 30px;
+.track-box h2 {
+    color: #123b70;
+    margin-bottom: 12px;
 }
 
-.timeline-item {
-  position: relative;
-  padding: 0 0 25px 35px;
-  border-left: 3px solid #d1d5db;
+.track-box p {
+    color: #666;
+    margin-bottom: 20px;
 }
 
-.timeline-item:last-child {
-  border-left: none;
+.track-button {
+    display: inline-block;
+    background: #0b5ed7;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -9px;
-  top: 0;
-  width: 15px;
-  height: 15px;
-  background: #d1d5db;
-  border-radius: 50%;
+.about {
+    background: #eaf2ff;
 }
 
-.timeline-item.completed::before {
-  background: #22c55e;
+.about-content {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
 }
 
-.timeline-item.current::before {
-  background: #2563eb;
-  box-shadow: 0 0 0 5px #dbeafe;
+.about-content p {
+    line-height: 1.8;
+    color: #555;
 }
 
-.timeline-item h3 {
-  margin: 0 0 5px;
-  font-size: 17px;
+.contact-box {
+    text-align: center;
 }
 
-.timeline-item p {
-  margin: 0;
-  color: #666;
+.contact-box p {
+    margin: 10px 0;
+    color: #555;
 }
 
-.timeline-item.completed h3 {
-  color: #16a34a;
+footer {
+    background: #082d63;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+    margin-top: 20px;
 }
 
-.timeline-item.current h3 {
-  color: #2563eb;
-}
-
-.timeline-item.pending h3 {
-  color: #777;
-}
-
-.error {
-  color: #dc2626;
-  text-align: center;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.footer {
-  text-align: center;
-  color: #777;
-  padding: 30px;
+footer p {
+    font-size: 14px;
 }
 
 @media (max-width: 600px) {
-  .header h1 {
-    font-size: 28px;
-  }
+    .nav {
+        flex-direction: column;
+        gap: 12px;
+    }
 
-  .tracking-box,
-  .details {
-    padding: 20px;
-  }
+    .nav a {
+        margin: 0 7px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
 }
-</style>
+/* ===== PROFESSIONAL HOMEPAGE DESIGN ===== */
+
+header {
+    background: #0b4ea2;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+}
+  section {
+    scroll-margin-top: 100px;
+}
+
+header h1 {
+    letter-spacing: 0.5px;
+}
+
+.hero {
+    background: linear-gradient(135deg, #0b4ea2, #1769d1, #063b82);
+    padding: 90px 20px 100px;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 46px;
+    max-width: 850px;
+    margin-bottom: 25px;
+    line-height: 1.15;
+}
+
+.hero p {
+    font-size: 21px;
+    max-width: 720px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.buttons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border-radius: 10px;
+    padding: 17px 32px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn.primary {
+    background: white;
+    color: #0b4ea2;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.btn.secondary {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+}
+
+.container {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.section-title h2 {
+    font-size: 38px;
+    color: #123f70;
+}
+
+.section-title p {
+    font-size: 18px;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.card {
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.contact-box {
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* Mobile improvement */
+@media (max-width: 600px) {
+    .hero {
+        padding: 70px 18px 80px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .buttons {
+        width: 100%;
+    }
+
+    .btn {
+        width: 90%;
+        text-align: center;
+    }
+
+    .section-title h2 {
+        font-size: 32px;
+    }
+/* ===== PROFESSIONAL SHIPPING HERO ===== */
+
+.hero {
+    background: linear-gradient(135deg, #0b4ea2, #1769d1, #0b4ea2);
+    padding: 100px 20px 110px;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "FAST • SECURE • WORLDWIDE";
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+    opacity: 0.9;
+}
+
+.hero h1 {
+    font-size: 46px;
+    max-width: 850px;
+    margin: 0 0 25px;
+    line-height: 1.15;
+    font-weight: 800;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 700px;
+    line-height: 1.6;
+    margin: 0 0 35px;
+}
+
+.track-button {
+    display: inline-block;
+    background: white;
+    color: #0b4ea2;
+    padding: 16px 38px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+.track-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+}</style>
 </head>
 
 <body>
 
-<div class="header">
-<img src="logo.png" alt="British Express" style="width:180px; height:auto; display:block; margin:0 auto 10px;"> 
-  <h1>📦 Shipment Tracking</h1>
+<header>
+    <div class="nav">
+        <div class="logo">British Express</div>
 
-<div class="container">
+        <div>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</header>
 
-  <div class="intro">
-    Track your package quickly and easily.
-  </div>
+<section class="hero" id="home">
 
-  <div class="tracking-box">
+    <div class="hero-content">
 
-    <h2>Track your package</h2>
+        <div class="hero-badge">
+            🚚 FAST • SECURE • RELIABLE
+        </div>
 
-    <input
-      type="text"
-      id="trackingNumber"
-      placeholder="Enter your tracking number"
-    >
+        <h1>British Express</h1>
 
-    <button onclick="trackPackage()">
-      Track package
-    </button>
+        <h2>Global Shipping & Delivery</h2>
 
-  </div>
+        <p>
+            Reliable delivery solutions for local and international shipments.
+            Track your package and stay informed every step of the way.
+        </p>
 
-  <div id="result"></div>
+    <div class="buttons">
+        <a class="btn primary" href="https://britishexpressdelivery.github.io/british-express-delivery/">
+            Track Your Shipment
+        </a>
 
-</div>
+        <a class="btn secondary" href="#services">
+            Our Services
+        </a>
+    </div>
+</section>
 
-<div class="footer">
-  © 2026 Shipment Tracking
-</div>
+<section class="container" id="services">
 
-<script>
-
-const packages = {
-
-  "PKG36295": {
-    status: "In Transit",
-    location: "Local Distribution Center",
-    destination: "Customer Address",
-    shipmentDate: "29 September 2026",
-    deliveryDate: "1 October 2026"
-  },
-
-  "PKG62841": {
-    status: "Out for Delivery",
-    location: "Germany Berlin",
-    destination: "8283 Taman Tambychik Karim, 78300 Masjid Tanah, Melaka. Malaysia ",
-    shipmentDate: "29 September 2026",
-    deliveryDate: "30 September 2026"
-  },
-
-  "PKG39254": {
-    status: "Delivered",
-    location: "Local Distribution Center",
-destination: "Customer Address",
-shipmentDate: "29 September 2026",
-deliveryDate: "30 september 2026"
-  }
-
-};
-
-
-function trackPackage() {
-
-  const trackingNumber =
-    document.getElementById("trackingNumber")
-    .value
-    .trim()
-    .toUpperCase();
-
-  const result = document.getElementById("result");
-
-  if (!trackingNumber) {
-
-    result.innerHTML =
-      '<div class="error">Please enter a tracking number.</div>';
-
-    return;
-  }
-
-  const packageInfo = packages[trackingNumber];
-
-  if (!packageInfo) {
-
-    result.innerHTML =
-      '<div class="error">No package was found with that tracking number.</div>';
-
-    return;
-  }
-
-  const stages = [
-    "Package received",
-    "Departed origin facility",
-    "In Transit",
-    "Arrived at destination facility",
-    "Out for Delivery",
-    "Delivered"
-];
-
-  const descriptions = [
-    "The package has been received by the carrier.",
-    "The package has departed from the origin facility.",
-    "The package is currently in transit to its destination.",
-    "The package has arrived at the destination facility.",
-    "The package is being prepared for delivery.",
-    "The package has been delivered."
-];
-
-  const currentStage = stages.indexOf(packageInfo.status);
-
-  let timelineHTML = "";
-
-  stages.forEach((stage, index) => {
-
-    let className = "timeline-item";
-
-    if (index < currentStage) {
-      className += " completed";
-    } else if (index === currentStage) {
-      className += " current";
-    } else {
-      className += " pending";
-    }
-
-    timelineHTML += `
-      <div class="${className}">
-        <h3>${stage}</h3>
-        <p>${descriptions[index]}</p>
-      </div>
-    `;
-  });
-
-
-  result.innerHTML = `
-<div class="details">
-
-    <h2>Shipment Details</h2>
-
-    <div class="detail">
-        📦 <strong>Tracking Number:</strong>
-        ${trackingNumber}
+    <div class="section-title">
+        <h2>Our Services</h2>
+        <p>Reliable shipping solutions designed for individuals and businesses.</p>
     </div>
 
-    <div class="detail">
-        📍 <strong>Current Location:</strong>
-        ${packageInfo.location}
+    <div class="services">
+
+        <div class="card">
+            <div class="icon">📦</div>
+            <h3>Express Delivery</h3>
+            <p>
+                Fast and reliable delivery services for important shipments.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">✈️</div>
+            <h3>International Shipping</h3>
+            <p>
+                Shipping solutions for packages traveling between countries.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🚚</div>
+            <h3>Door-to-Door Delivery</h3>
+            <p>
+                Convenient delivery from the sender's location to the destination.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔒</div>
+            <h3>Secure Handling</h3>
+            <p>
+                Careful handling throughout the delivery process.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="container">
+    <div class="track-box">
+
+        <h2>Track Your Shipment</h2>
+
+        <p>
+            Already have a tracking number? Check the current status
+            of your shipment using our tracking system.
+        </p>
+
+        <a class="track-button" href="https://britishexpressdelivery.github.io/british-express-delivery">
+            Track Shipment
+        </a>
+
+    </div>
+</section>
+
+<section class="about" id="about">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>About British Express</h2>
+        </div>
+
+        <div class="about-content">
+            <p>
+                British Express Delivery Company provides delivery and
+                shipping solutions for customers who need dependable
+                transportation of their packages. Our goal is to make
+                shipment management simple, convenient and transparent.
+            </p>
+        </div>
+
     </div>
 
-    <div class="detail">
-        🚩 <strong>Status:</strong>
-        <span class="status">${packageInfo.status}</span>
+</section>
+
+<section class="container" id="contact">
+
+    <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>We're here to help with your delivery questions.</p>
     </div>
 
-    <div class="detail">
-        🏁 <strong>Destination:</strong>
-        ${packageInfo.destination}
+    <div class="contact-box">
+        <p>📧 Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=britishexpress358@gmail.com">britishexpress358@gmail.com</a></p>
+        <p>📞 Phone: +44 20 0000 0000</p>
+        <p>🌍 International Delivery & Shipping</p>
     </div>
 
-    <div class="detail">
-        📅 <strong>Shipment Date:</strong>
-        ${packageInfo.shipmentDate}
-    </div>
+</section>
 
-    <div class="detail">
-        🚚 <strong>Estimated Delivery:</strong>
-        ${packageInfo.deliveryDate}
-    </div>
-
-    <div class="timeline">
-        <h2>Tracking History</h2>
-        ${timelineHTML}
-    </div>
-
-</div>
-`;
-}
-
-</script>
-
-</body>
-</html>
+<footer>
+    <p>© 2026 British Express Delivery Company. All rights reserved.</p>
