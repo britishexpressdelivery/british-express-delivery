@@ -92,10 +92,10 @@ button:hover {
 }
 
 .detail {
-  margin: 12px 0;
-  font-size: 16px;
+    margin: 12px 0;
+    font-size: 16px;
+    color: #222;
 }
-
 .detail strong {
   color: #222;
 }
@@ -326,52 +326,47 @@ function trackPackage() {
 
 
   result.innerHTML = `
+<div class="details">
 
-    <div class="details">
+    <h2>Shipment Details</h2>
 
-      <h2>Shipment Details</h2>
-
-      <div class="detail">
+    <div class="detail">
         📦 <strong>Tracking Number:</strong>
         ${trackingNumber}
-      </div>
-
-      <div class="detail">
-        📍 <strong>Current Location:</strong>
-        ${packageInfo.location}
-      </div>
-
-      <div class="detail">
-        🚩 <strong>Status:</strong>
-        <span class="status">${packageInfo.status}</span>
-      </div>
-
-      <div class="detail">
-        🏁 <strong>Destination:</strong>
-        ${packageInfo.destination}
-      </div>
-
-      <div class="detail">
-        📅 <strong>Shipment Date:</strong>
-        ${packageInfo.shipmentDate}
-      </div>
-
-      <div class="detail">
-        🚚 <strong>Estimated Delivery:</strong>
-        ${packageInfo.deliveryDate}
-      </div>
-
-      <div class="timeline">
-
-        <h2>Shipment History</h2>
-
-        ${timelineHTML}
-
-      </div>
-
     </div>
 
-  `;
+    <div class="detail">
+        📍 <strong>Current Location:</strong>
+        ${packageInfo.location}
+    </div>
+
+    <div class="detail">
+        🚩 <strong>Status:</strong>
+        <span class="status">${packageInfo.status}</span>
+    </div>
+
+    <div class="detail">
+        🏁 <strong>Destination:</strong>
+        ${packageInfo.destination}
+    </div>
+
+    <div class="detail">
+        📅 <strong>Shipment Date:</strong>
+        ${packageInfo.shipmentDate}
+    </div>
+
+    <div class="detail">
+        🚚 <strong>Estimated Delivery:</strong>
+        ${packageInfo.deliveryDate}
+    </div>
+
+    <div class="timeline">
+        <h2>Tracking History</h2>
+        ${timelineHTML}
+    </div>
+
+</div>
+`;
 }
 
 </script>
