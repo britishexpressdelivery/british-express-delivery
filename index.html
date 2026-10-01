@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Seguimiento de Paquetes</title>
+<title>Shipment Tracking</title>
 
 <style>
 * {
@@ -191,27 +191,26 @@ button:hover {
 
 <div class="header">
 <img src="logo.png" alt="British Express" style="width:180px; height:auto; display:block; margin:0 auto 10px;"> 
-  <h1>📦 Seguimiento de Paquetes</h1>
-</div>
+  <h1>📦 Shipment Tracking</h1>
 
 <div class="container">
 
   <div class="intro">
-    Rastrea tu paquete de forma rápida y sencilla.
+    Track your package quickly and easily.
   </div>
 
   <div class="tracking-box">
 
-    <h2>Rastrea tu paquete</h2>
+    <h2>Track your package</h2>
 
     <input
       type="text"
       id="trackingNumber"
-      placeholder="Introduce el número de seguimiento"
+      placeholder="Enter your tracking number"
     >
 
     <button onclick="trackPackage()">
-      Rastrear paquete
+      Track package
     </button>
 
   </div>
@@ -221,7 +220,7 @@ button:hover {
 </div>
 
 <div class="footer">
-  © 2026 Seguimiento de Paquetes
+  © 2026 Shipment Tracking
 </div>
 
 <script>
@@ -229,27 +228,27 @@ button:hover {
 const packages = {
 
   "PKG36295": {
-    status: "En Tránsito",
-    location: "London Processing Center",
-    destination: "Katia Elibet Montalvo Laureano, Calle San Jose número 28 segunda planta, Ibiza, Islas Baleares, España, Santa Eulalia del Río",
-    shipmentDate: "29 de septiembre de 2026",
-    deliveryDate: "1 de octubre de 2026"
+    status: "status: "In Transit",
+    location: "Local Distribution Center",
+    destination: "Customer Address",
+    shipmentDate: "29 September 2026",
+    deliveryDate: "1 October 2026"
   },
 
-  "PKG67890": {
-    status: "En Reparto",
-    location: "Centro de Distribución Local",
-    destination: "Dirección del cliente",
-    shipmentDate: "29 de septiembre de 2026",
-    deliveryDate: "1 de octubre de 2026"
+  "PKG62841": {
+    status: status: "Out for Delivery",
+    location: "Germany Berlin",
+    destination: "8283 Taman Tambychik Karim, 78300 Masjid Tanah, Melaka. Malaysia ",
+    shipmentDate: "29 September 2026",
+    deliveryDate: "30 September 2026"
   },
 
   "PKG39254": {
-    status: "Entregado",
-    location: "Berlin Germany",
-destination: "8283 Taman Tambychik Karim, 78300 Masjid Tanah, Melaka. Malaysia",
-shipmentDate: "29 de septiembre de 2026",
-deliveryDate: "30 de septiembre de 2026"
+    status: status: "Delivered",
+    location: "Local Distribution Center",
+destination: "Customer Address",
+shipmentDate: "29 September 2026",
+deliveryDate: "30 september 2026"
   }
 
 };
@@ -268,7 +267,7 @@ function trackPackage() {
   if (!trackingNumber) {
 
     result.innerHTML =
-      '<div class="error">Introduce un número de seguimiento.</div>';
+      '<div class="error">Please enter a tracking number.</div>';
 
     return;
   }
@@ -278,28 +277,28 @@ function trackPackage() {
   if (!packageInfo) {
 
     result.innerHTML =
-      '<div class="error">No se encontró ningún paquete con ese número.</div>';
+      '<div class="error">No package was found with that tracking number.</div>';
 
     return;
   }
 
   const stages = [
-    "Paquete recibido",
-    "Salió de la instalación de origen",
-    "En Tránsito",
-    "Llegó a la instalación de destino",
-    "En Reparto",
-    "Entregado"
-  ];
+    "Package received",
+    "Departed origin facility",
+    "In Transit",
+    "Arrived at destination facility",
+    "Out for Delivery",
+    "Delivered"
+];
 
   const descriptions = [
-    "El paquete ha sido recibido por el transportista.",
-    "El paquete ha salido de la instalación de origen.",
-    "El paquete se encuentra actualmente en tránsito hacia su destino.",
-    "El paquete ha llegado a la instalación de destino.",
-    "El paquete está siendo preparado para su entrega.",
-    "El paquete ha sido entregado."
-  ];
+    "The package has been received by the carrier.",
+    "The package has departed from the origin facility.",
+    "The package is currently in transit to its destination.",
+    "The package has arrived at the destination facility.",
+    "The package is being prepared for delivery.",
+    "The package has been delivered."
+];
 
   const currentStage = stages.indexOf(packageInfo.status);
 
@@ -330,41 +329,41 @@ function trackPackage() {
 
     <div class="details">
 
-      <h2>Detalles del Envío</h2>
+      <h2>Shipment Details</h2>
 
       <div class="detail">
-        📦 <strong>Número de Seguimiento:</strong>
+        📦 <strong>Tracking Number:</strong>
         ${trackingNumber}
       </div>
 
       <div class="detail">
-        📍 <strong>Ubicación Actual:</strong>
+        📍 <strong>Current Location:</strong>
         ${packageInfo.location}
       </div>
 
       <div class="detail">
-        🚩 <strong>Estado:</strong>
+        🚩 <strong>Status:</strong>
         <span class="status">${packageInfo.status}</span>
       </div>
 
       <div class="detail">
-        🏁 <strong>Destino:</strong>
+        🏁 <strong>Destination:</strong>
         ${packageInfo.destination}
       </div>
 
       <div class="detail">
-        📅 <strong>Fecha de Envío:</strong>
+        📅 <strong>Shipment Date:</strong>
         ${packageInfo.shipmentDate}
       </div>
 
       <div class="detail">
-        🚚 <strong>Entrega Estimada:</strong>
+        🚚 <strong>Estimated Delivery:</strong>
         ${packageInfo.deliveryDate}
       </div>
 
       <div class="timeline">
 
-        <h2>Historial del Envío</h2>
+        <h2>Shipment History</h2>
 
         ${timelineHTML}
 
